@@ -17,20 +17,24 @@ public class FileIO
   public static ArrayList<String> chatLog = new ArrayList<String>();
   static final String chatLogFileName = "chatLog.txt";
 
-  public static void LoadLogFromFile() {
+  public static int LoadLogFromFile(String defaultName) {
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setDialogTitle("Select chat log File");
     fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
+    if(defaultName == null || defaultName.isEmpty())
+    {
+      defaultName = chatLogFileName;
+    }
+    // set the default file name to defaultName
+    fileChooser.setSelectedFile(new File(defaultName));
 
     int userSelection = fileChooser.showOpenDialog(null);
     if (userSelection == JFileChooser.APPROVE_OPTION) {
       String filePath = fileChooser.getSelectedFile().getAbsolutePath();
       try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
         String line;
-        int index = 0;
         while ((line = reader.readLine()) != null) {
           chatLog.add(line);
-          index++;
         }
         System.out.println("Chat log loaded successfully.");
       } catch (IOException e) {
@@ -39,18 +43,24 @@ public class FileIO
     } else if(userSelection == JFileChooser.CANCEL_OPTION){
       System.out.println("Log file not loaded. Starting fresh chat log.");
     }
+
+    return userSelection;
   }
 
   public static final ArrayList<String> ChatLog() {
     return chatLog;
   }
 
-  static void SaveLogToFile() {
+  static void SaveLogToFile(String defaultName) {
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setDialogTitle("Save Log File");
     fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
     fileChooser.setApproveButtonText("Save");
-    fileChooser.setSelectedFile(new File(chatLogFileName));
+    if(defaultName == null || defaultName.isEmpty())
+    {
+      defaultName = chatLogFileName;
+    }
+    fileChooser.setSelectedFile(new File(defaultName));
 
     int userSelection = fileChooser.showSaveDialog(null);
     if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -115,13 +125,13 @@ public class FileIO
     switch(cmd)
     {
       case Load:
-        LoadLogFromFile();
+        LoadLogFromFile(null);
         return 0;
       case Save:
-        SaveLogToFile();
+        SaveLogToFile(null);
         return 0;
       case Quit:
-        SaveLogToFile();
+        SaveLogToFile(null);
         System.exit(0);
         break;
       default:

@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -14,6 +16,7 @@ import javax.swing.SwingUtilities;
 public class App {
 
   static String userInput = "";
+  static JTextArea terminalArea = new JTextArea();
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(() -> {
@@ -21,7 +24,6 @@ public class App {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setSize(400, 300);
 
-      JTextArea terminalArea = new JTextArea();
       terminalArea.setEditable(false); // Make it read-only
       terminalArea.setFont(new Font("Monospaced", Font.PLAIN, 12)); // Use a monospaced font
 
@@ -41,13 +43,7 @@ public class App {
 
       System.out.println("Welcome to Chat.");
 
-      // Load chat log from file and display it in the terminal area
-      FileIO.LoadLogFromFile();
-      int currentLine = 1;
-      for (String line : FileIO.ChatLog()) {
-        terminalArea.append(currentLine + ": " + line + "\n");
-        currentLine++;
-      }
+      loadLogFile();
 
       // Create an input field
       JTextField inputField = new JTextField();
@@ -56,8 +52,8 @@ public class App {
           public void keyPressed(java.awt.event.KeyEvent evt) {
             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
               userInput = inputField.getText();
-              //System.out.println("User input: " + userInput);
-              inputField.setText(""); // Clear the input field
+              // Clear the input field
+              inputField.setText("");
               // focus the input field
               update();
             }
@@ -73,6 +69,23 @@ public class App {
 
       update();
     });
+  }
+
+  public static void loadLogFile() {
+    // Load chat log from file and display it in the terminal area
+    if(FileIO.LoadLogFromFile("chatLog.txt") == JFileChooser.APPROVE_OPTION) {
+      terminalArea.setText("");
+      System.out.println("Starting fresh chat log.");
+
+      int currentLine = 1;
+      for (String line : FileIO.ChatLog()) {
+        terminalArea.append(currentLine + ": " + line + "\n");
+        currentLine++;
+      }
+    }
+    else {
+      System.out.println("Chat log not loaded.");
+    }
   }
 
   public static void update() {
