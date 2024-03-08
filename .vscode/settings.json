@@ -4,7 +4,7 @@
   ],
   "gradle.javaDebug.cleanOutput": true,
   "java.project.sourcePaths": [
-    "src"
+    "ChatApp"
   ],
   "java.project.outputPath": "bin"
 }
