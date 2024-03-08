@@ -39,7 +39,7 @@ code .
 Right-click a java file in VSCode and "Run Java".  The following files should be runnable:
 * ChatApp\ChatApp.java
 * SampleTestApp\WumpusUI.java
-* SampleTestApp\CaveTest\CaveTest.java 
+* SampleTestApp\Cave\CaveTest.java 
 
 ## Running the Samples on the command line
 

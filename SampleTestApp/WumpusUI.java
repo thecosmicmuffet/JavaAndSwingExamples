@@ -1,13 +1,12 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 
-import WumpusObjects.Cave;
+import Cave.Cave;
 
 // The main reason this code is here, is to show you how your test code might be structured in a
 // directory with the rest of your team's wumpus project.  This file is a mockup of your wumpus game UI.

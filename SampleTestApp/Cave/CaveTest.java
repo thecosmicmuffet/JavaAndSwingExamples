@@ -1,9 +1,7 @@
-package CaveTest;
+package Cave;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-
-import WumpusObjects.Cave;
 
 // This file is an example of how a test UI might work.
 // It is calling the mock cave object, but does not interact at all with the mock wumpus game code.
@@ -32,7 +30,7 @@ class CaveTest {
     {
         JFrame frame = new JFrame("My Wumpus Test GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 400);
+        frame.setSize(400, 200);
         frame.setLayout(null);
 
         int yPos = 0;
