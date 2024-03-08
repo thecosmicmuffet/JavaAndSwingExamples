@@ -1,19 +1,16 @@
-import Modules.FileIO;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-public class App {
+import Modules.FileIO;
+
+public class ChatApp {
 
   static String userInput = "";
   static JTextArea terminalArea = new JTextArea();
@@ -22,26 +19,10 @@ public class App {
     SwingUtilities.invokeLater(() -> {
       JFrame frame = new JFrame("Terminal App");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(400, 300);
+      frame.setSize(800, 300);
 
       terminalArea.setEditable(false); // Make it read-only
       terminalArea.setFont(new Font("Monospaced", Font.PLAIN, 12)); // Use a monospaced font
-
-      // Redirect System.out to the terminal area
-      PrintStream originalOut = System.out;
-      System.setOut(
-        new PrintStream(
-          new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-              terminalArea.append(String.valueOf((char) b));
-              originalOut.write(b);
-            }
-          }
-        )
-      );
-
-      System.out.println("Welcome to Chat.");
 
       loadLogFile();
 
@@ -73,9 +54,13 @@ public class App {
 
   public static void loadLogFile() {
     // Load chat log from file and display it in the terminal area
-    if(FileIO.LoadLogFromFile("chatLog.txt") == JFileChooser.APPROVE_OPTION) {
+    if(FileIO.LoadLogFromFile() == true) {
+
       terminalArea.setText("");
-      System.out.println("Starting fresh chat log.");
+      terminalArea.append("Welcome to Chat.\n");
+      terminalArea.append("Write messages here to chat, or type 'load', 'save', or 'quit'.\n");
+
+      System.out.println("Loaded chat log.");
 
       int currentLine = 1;
       for (String line : FileIO.ChatLog()) {
@@ -92,7 +77,7 @@ public class App {
     String input = userInput;
     int chatSize = FileIO.ProcessChat(input);
     if (chatSize > 0) {
-      System.out.print(chatSize + ": " + input + "\n");
+      terminalArea.append(chatSize + ": " + input + "\n");
     }
   }
 }
