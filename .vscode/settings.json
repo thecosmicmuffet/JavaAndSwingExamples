@@ -4,8 +4,9 @@
   ],
   "gradle.javaDebug.cleanOutput": true,
   "java.project.sourcePaths": [
+    "SampleTestApp",
     "ChatApp",
-    "SampleTestApp"
+    "SuperHeroBakeSale"
   ],
   "java.project.outputPath": "bin"
 }
