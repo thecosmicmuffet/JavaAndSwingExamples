@@ -7,26 +7,32 @@ class Recipe {
 }
 
 class SuperHeroBakeSale {
-    public static void main(String args[]) {
-            int someNumber = 3;
-
+    public static void main(String args[]) 
+    {
+            byte someNumber = 3; // 8 bits 
+            System.out.println(~someNumber);
             boolean isGreaterThanZero = someNumber > 0;
-            boolean isGreaterThanOne = someNumber > 1;
-            boolean isGreaterThanThree = someNumber > 3;
-            //boolean isGreaterThan...
+            boolean isWiderThanOneBit = someNumber >= 2;
+            boolean isWiderThanTwoBits = someNumber >= 4;
+            boolean isWiderThanThreeBits = someNumber >= 8;
 
             if(isGreaterThanZero)
             {
-                if(isGreaterThanOne)
+                if(isWiderThanOneBit)
                 {
                     System.out.println("the number is wider than 1 bit");
-                    if(isGreaterThanThree)
+                    if(isWiderThanTwoBits)
                     {
                         System.out.println("the number is wider than 2 bits");
+                        
+                        if(isWiderThanThreeBits)
+                        {
+                            // fill in
+                        }
                     } 
                     else
                     {
-                        if(someNumber > 2)
+                        if((someNumber & 1) == 1) // 11 & 1 == 01
                         {
                             System.out.println("the number is 3");
                         }

@@ -42,3 +42,15 @@ String someString = "test";
 10 *10 * 10 = 10^3
 
 2^4 = 16
+
+---
+
+### Bitwise operators
+| Operators | Symbol | Use | 
+|-|-|-|
+| AND | & | `011 & 101 = 001` |
+| exclusive OR | ^ | `011 ^ 101 = 110` |
+| inclusive OR | &#124; | <code>011 &#124; 101 = 111</code>|
+| complement | ~ | `~011 = 100`|
+| signed shift right | >> | `011 >> 1 = 001` |
+| signed shift left | << | `011 << 1 = 110` |
