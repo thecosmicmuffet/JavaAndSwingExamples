@@ -1,9 +1,17 @@
-class Ingredient {
+enum IngredientType
+{
+    Starch,
+    Fat,
+    Sweet,
+    Salty
+}
 
+class Ingredient {
+    // How will we characterize ingredients?
 }
 
 class Recipe {
-
+    Ingredient[] ingredients;
 }
 
 class SuperHeroBakeSale {
