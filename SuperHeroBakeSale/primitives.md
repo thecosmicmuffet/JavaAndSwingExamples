@@ -10,17 +10,17 @@ char someChar = 'a';
 
 String someString = "test";
 ```
-|Data Type  |	Default Value (for fields)| Size (bits) |
-| -                         | -         | -     |
-| byte                      |	0       | 8     |
-| short                     |	0       | 16    |
-| int                       |	0       | 32    |
-| long                      |	0L      | 64    |
-| float                     |	0.0f    | 32    |
-| double                    |	0.0d    | 64    |
-| char                      |	'\u0000'| 16    |
-| String (or any object)    |   null    |  8*+  |
-| boolean                   |   false   | 1*    |
+|Data Type  |	Default Value (for fields)| Size (bits) | Max value |
+| -                         | -         | -     | - |
+| byte                      |	0       | 8     | 255 |
+| short                     |	0       | 16    | 65535 |
+| int                       |	0       | 32    | (-)65535 |
+| long                      |	0L      | 64    |  |
+| float                     |	0.0f    | 32    | |
+| double                    |	0.0d    | 64    | |
+| char                      |	'\u0000'| 16    | |
+| String (or any object)    |   null    |  8*+  | |
+| boolean                   |   false   | 1*    | |
 ---
 | byte | number | hex | 
 |-|-|-|
@@ -64,3 +64,18 @@ String someString = "test";
 | complement | ~ | `~011 = 100`|
 | signed shift right | >> | `011 >> 1 = 001` |
 | signed shift left | << | `011 << 1 = 110` |
+
+
+true && false == false
+true && true == true
+false && false == false
+
+true || false == true
+true || true == true
+false || false == false
+
+!(true || false) == false
+!true || !false == true
+
+true && !false == true
+
