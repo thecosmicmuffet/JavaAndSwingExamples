@@ -3,7 +3,7 @@ import Ingredients.IngredientType;
 class Ingredient {
     // How will we characterize ingredients?
     int uses;
-    byte ingredientTypes; // starchy (2) AND salty(32) 0010 0010
+    IngredientType ingredientTypes; // starchy (2) AND salty(32) 0010 0010
 
 }
 
