@@ -15,18 +15,19 @@ class Recipe {
 class SuperHeroBakeSale {
     public static void main(String args[]) 
     {
+        System.out.println("Welcome to Program");
             byte someNumber = 103;
             Recipe test;
             // 8 bits 0000 0000
             //        0110 0111
-            while(someNumber != 0)
+            while(someNumber != 0) // 0000 0000
             {
-                //                                   0110 0111
-                System.out.print(someNumber & 1); // 0000 0001
-
-                someNumber = (byte)(someNumber >> 1);
+                                                //      0110 0111 : someNumber
+                System.out.print(someNumber & 1); //    0000 0001
+                someNumber = (byte)(someNumber >> 1);// 00110 011
             }
-
+            System.out.println();
+            System.out.println("Program Done");
     }
 }
 
